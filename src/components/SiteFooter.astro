@@ -1,0 +1,12 @@
+---
+import PixelHeart from './sprites/PixelHeart.astro';
+import { SITE } from '../config';
+---
+
+<footer class="site-footer">
+	<div class="shell footer-inner">
+		<p>{SITE.title} <span aria-hidden="true">·</span> © 2026</p>
+		<PixelHeart class="footer-heart" size="xs" />
+		<a href={SITE.github} rel="me">GitHub</a>
+	</div>
+</footer>

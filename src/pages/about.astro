@@ -1,0 +1,66 @@
+---
+import SiteFooter from '../components/SiteFooter.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import PixelCloud from '../components/sprites/PixelCloud.astro';
+import PixelStar from '../components/sprites/PixelStar.astro';
+import { SITE } from '../config';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const interests = [
+	'AI / Machine Learning',
+	'Software',
+	'Computer Systems',
+	"Things I'm learning",
+];
+---
+
+<BaseLayout
+	title="About"
+	description={SITE.aboutDescription}
+>
+	<SiteHeader currentPath="/about/" />
+
+	<main id="main-content">
+		<div class="about-shell">
+			<header class="page-header about-header">
+				<div class="about-header-sprites" aria-hidden="true">
+					<PixelStar class="about-star-primary" size="sm" variant="sparkle" />
+					<PixelStar class="about-star-secondary" size="xs" variant="diamond" />
+					<PixelCloud class="about-cloud" size="sm" />
+				</div>
+				<h1>About</h1>
+			</header>
+
+			<div class="about-content">
+				<section class="about-intro" aria-label="Introduction">
+					<p class="about-lead">Hi, I'm Irene.</p>
+					<p>
+						I'm interested in software, artificial intelligence, and the things I discover while
+						learning and building.
+					</p>
+					<p>
+						This blog is a small place for notes, experiments, technical writing, and things I
+						want to remember.
+					</p>
+				</section>
+
+				<section class="about-section" aria-labelledby="interests-heading">
+					<h2 class="section-heading" id="interests-heading">Currently interested in</h2>
+					<ul class="interest-list">
+						{interests.map((interest) => <li>{interest}</li>)}
+					</ul>
+				</section>
+
+				<section class="about-section find-me" aria-labelledby="find-me-heading">
+					<PixelStar class="find-me-star" size="xs" variant="bright" />
+					<h2 class="section-heading" id="find-me-heading">Find me</h2>
+					<a class="about-github-link" href={SITE.github} rel="me">
+						GitHub <span aria-hidden="true">↗</span>
+					</a>
+				</section>
+			</div>
+		</div>
+	</main>
+
+	<SiteFooter />
+</BaseLayout>

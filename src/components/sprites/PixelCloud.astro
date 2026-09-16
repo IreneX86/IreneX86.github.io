@@ -1,0 +1,38 @@
+---
+interface Props {
+	size?: 'sm' | 'md' | 'lg';
+	class?: string;
+}
+
+const { size = 'md', class: className } = Astro.props;
+---
+
+<svg
+	class:list={['pixel-sprite', `sprite--${size}`, className]}
+	viewBox="0 0 32 16"
+	aria-hidden="true"
+	focusable="false"
+	shape-rendering="crispEdges"
+>
+	<path class="cloud-shadow" d="M2 8H5V5H9V3H12V1H19V3H23V5H27V7H30V9H32V15H0V10H2Z" />
+	<path class="cloud-body" d="M3 8H6V6H10V4H13V2H18V4H22V6H26V8H29V10H31V13H2V10H3Z" />
+	<rect class="cloud-light" x="11" y="4" width="7" height="2" />
+	<rect class="cloud-pink" x="22" y="9" width="6" height="2" />
+</svg>
+
+<style>
+	.pixel-sprite {
+		display: block;
+		width: var(--sprite-width, calc(var(--sprite-md) * 2));
+		height: auto;
+	}
+
+	.sprite--sm { --sprite-width: calc(var(--sprite-sm) * 2); }
+	.sprite--md { --sprite-width: calc(var(--sprite-md) * 2); }
+	.sprite--lg { --sprite-width: calc(var(--sprite-lg) * 2); }
+
+	.cloud-shadow { fill: var(--pixel-border); }
+	.cloud-body { fill: var(--sprite-light); }
+	.cloud-light { fill: var(--pixel-surface); }
+	.cloud-pink { fill: var(--pixel-pink-soft); }
+</style>

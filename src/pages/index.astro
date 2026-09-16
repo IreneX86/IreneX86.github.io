@@ -1,0 +1,54 @@
+---
+import SiteFooter from '../components/SiteFooter.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PostRow from '../components/PostRow.astro';
+import PixelCloud from '../components/sprites/PixelCloud.astro';
+import PixelStar from '../components/sprites/PixelStar.astro';
+import { SITE } from '../config';
+import { getPublishedPosts } from '../utils/posts';
+
+const recentPosts = (await getPublishedPosts()).slice(0, 3);
+---
+
+<BaseLayout>
+	<SiteHeader currentPath="/" />
+
+	<main id="main-content">
+		<div class="home">
+			<section class="intro" aria-labelledby="intro-heading">
+				<div class="hero-sprites" aria-hidden="true">
+					<PixelStar class="hero-star hero-star-primary" size="sm" variant="bright" />
+					<PixelStar class="hero-star hero-star-secondary" size="xs" variant="diamond" />
+					<PixelCloud class="hero-cloud" size="sm" />
+				</div>
+				<h1 id="intro-heading">{SITE.title}</h1>
+				<p class="intro-copy">{SITE.description}</p>
+				<a class="intro-link external-link" href={SITE.github} rel="me">
+					GitHub / {SITE.githubUsername} <span aria-hidden="true">↗</span>
+				</a>
+			</section>
+
+			<section class="section" aria-labelledby="recent-writing-heading">
+				<h2 class="section-heading" id="recent-writing-heading">Recent Writing</h2>
+				{recentPosts.length > 0 ? (
+					<ul class="post-list" aria-label="Recent posts">
+						{recentPosts.map((post) => <PostRow post={post} />)}
+					</ul>
+				) : (
+					<p class="empty-state">No posts yet</p>
+				)}
+			</section>
+
+			<section class="section about-preview" aria-labelledby="about-this-space-heading">
+				<h2 class="section-heading" id="about-this-space-heading">About this space</h2>
+				<p>
+					A place for technical writing, project notes, things I am learning, and the occasional
+					personal reflection.
+				</p>
+			</section>
+		</div>
+	</main>
+
+	<SiteFooter />
+</BaseLayout>

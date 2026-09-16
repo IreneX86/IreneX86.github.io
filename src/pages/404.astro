@@ -1,0 +1,32 @@
+---
+import SiteFooter from '../components/SiteFooter.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import PixelCloud from '../components/sprites/PixelCloud.astro';
+import PixelStar from '../components/sprites/PixelStar.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+	title="Page not found"
+	description="The requested page could not be found."
+	noindex
+	canonicalPath="/404/"
+>
+	<SiteHeader currentPath="/404/" />
+
+	<main id="main-content" class="not-found-page">
+		<section class="not-found-panel" aria-labelledby="not-found-heading">
+			<div class="not-found-sprites" aria-hidden="true">
+				<PixelStar class="not-found-star-primary" size="sm" variant="bright" />
+				<PixelStar class="not-found-star-secondary" size="xs" variant="diamond" />
+				<PixelCloud class="not-found-cloud" size="sm" />
+			</div>
+			<p class="error-code">404</p>
+			<h1 id="not-found-heading">Page not found</h1>
+			<p class="not-found-copy">Looks like this page wandered off somewhere.</p>
+			<a class="back-home-link" href="/">← Back home</a>
+		</section>
+	</main>
+
+	<SiteFooter />
+</BaseLayout>

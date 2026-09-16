@@ -1,0 +1,26 @@
+---
+import { formatPostDate, type BlogPost } from '../utils/posts';
+
+interface Props {
+	post: BlogPost;
+}
+
+const { post } = Astro.props;
+const { title, description, publishedDate, tags, test } = post.data;
+---
+
+<li class="post-row">
+	<div class="post-date-group">
+		<time class="post-date" datetime={publishedDate.toISOString()}>{formatPostDate(publishedDate)}</time>
+		{test && <span class="test-label">Test</span>}
+	</div>
+	<div class="post-summary">
+		<h3 class="post-title"><a href={`/blog/${post.id}/`}>{title}</a></h3>
+		<p class="post-description">{description}</p>
+		{tags.length > 0 && (
+			<ul class="tag-list" aria-label="Tags">
+				{tags.map((tag) => <li>{tag}</li>)}
+			</ul>
+		)}
+	</div>
+</li>

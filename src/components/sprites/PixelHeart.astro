@@ -1,0 +1,35 @@
+---
+interface Props {
+	size?: 'xs' | 'sm';
+	class?: string;
+}
+
+const { size = 'xs', class: className } = Astro.props;
+---
+
+<svg
+	class:list={['pixel-sprite', `sprite--${size}`, className]}
+	viewBox="0 0 12 12"
+	aria-hidden="true"
+	focusable="false"
+	shape-rendering="crispEdges"
+>
+	<path class="heart-shadow" d="M1 3H3V1H5V3H7V1H9V3H11V7H9V9H7V11H5V9H3V7H1Z" />
+	<path class="heart-fill" d="M2 3H4V2H5V4H7V2H8V3H10V6H8V8H6V10H5V8H3V6H2Z" />
+	<rect class="heart-light" x="3" y="3" width="1" height="2" />
+</svg>
+
+<style>
+	.pixel-sprite {
+		display: block;
+		width: var(--sprite-size, var(--sprite-xs));
+		height: var(--sprite-size, var(--sprite-xs));
+	}
+
+	.sprite--xs { --sprite-size: var(--sprite-xs); }
+	.sprite--sm { --sprite-size: var(--sprite-sm); }
+
+	.heart-shadow { fill: var(--pixel-pink-strong); }
+	.heart-fill { fill: var(--pixel-pink); }
+	.heart-light { fill: var(--sprite-light); }
+</style>

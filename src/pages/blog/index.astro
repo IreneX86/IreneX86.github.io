@@ -1,0 +1,58 @@
+---
+import PostRow from '../../components/PostRow.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PixelCloud from '../../components/sprites/PixelCloud.astro';
+import PixelStar from '../../components/sprites/PixelStar.astro';
+import { SITE } from '../../config';
+import { getPublishedPosts, type BlogPost } from '../../utils/posts';
+
+const posts = await getPublishedPosts();
+const postGroups = posts.reduce<Array<{ year: number; posts: BlogPost[] }>>((groups, post) => {
+	const year = post.data.publishedDate.getUTCFullYear();
+	const existingGroup = groups.at(-1);
+
+	if (existingGroup?.year === year) {
+		existingGroup.posts.push(post);
+	} else {
+		groups.push({ year, posts: [post] });
+	}
+
+	return groups;
+}, []);
+---
+
+<BaseLayout title="Blog" description={SITE.blogDescription}>
+	<SiteHeader currentPath="/blog/" />
+
+	<main id="main-content">
+		<div class="blog-shell">
+			<header class="page-header">
+				<div class="blog-header-sprites" aria-hidden="true">
+					<PixelStar class="blog-star" size="sm" variant="sparkle" />
+					<PixelCloud class="blog-cloud" size="sm" />
+				</div>
+				<h1>Blog</h1>
+				<p>Notes, experiments, and things worth remembering.</p>
+			</header>
+
+			<div class="post-archive">
+				{postGroups.length > 0 ? (
+					postGroups.map((group) => (
+						<section class="year-group" aria-labelledby={`year-${group.year}`}>
+							<h2 id={`year-${group.year}`}>{group.year}</h2>
+							<ul class="post-list">
+								{group.posts.map((post) => <PostRow post={post} />)}
+							</ul>
+						</section>
+					))
+				) : (
+					<p class="empty-state">No posts yet</p>
+				)}
+			</div>
+		</div>
+	</main>
+
+	<SiteFooter />
+</BaseLayout>

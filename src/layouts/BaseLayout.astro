@@ -1,0 +1,76 @@
+---
+import '../styles/global.css';
+import { absoluteUrl, SITE } from '../config';
+
+interface Props {
+	title?: string;
+	description?: string;
+	type?: 'website' | 'article';
+	noindex?: boolean;
+	canonicalPath?: string;
+}
+
+const {
+	title: pageTitle,
+	description = SITE.description,
+	type = 'website',
+	noindex = false,
+	canonicalPath = Astro.url.pathname,
+} = Astro.props;
+
+const title = pageTitle ? `${pageTitle} | ${SITE.title}` : SITE.title;
+const canonicalUrl = absoluteUrl(canonicalPath);
+const rssUrl = absoluteUrl('/rss.xml');
+const sitemapUrl = absoluteUrl('/sitemap-index.xml');
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<meta name="description" content={description} />
+		<meta name="author" content={SITE.author} />
+		{noindex && <meta name="robots" content="noindex" />}
+		<meta name="theme-color" content="#eef7ff" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="canonical" href={canonicalUrl} />
+		<link rel="alternate" type="application/rss+xml" title={`${SITE.title} RSS feed`} href={rssUrl} />
+		<link rel="sitemap" href={sitemapUrl} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={canonicalUrl} />
+		<meta property="og:type" content={type} />
+		<meta property="og:site_name" content={SITE.title} />
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<title>{title}</title>
+		<script is:inline>
+			(() => {
+				let savedTheme;
+
+				try {
+					savedTheme = localStorage.getItem('theme');
+				} catch {}
+
+				const theme = savedTheme === 'light' || savedTheme === 'dark'
+					? savedTheme
+					: window.matchMedia('(prefers-color-scheme: dark)').matches
+						? 'dark'
+						: 'light';
+
+				document.documentElement.dataset.theme = theme;
+				document.documentElement.style.colorScheme = theme;
+				document
+					.querySelector('meta[name="theme-color"]')
+					?.setAttribute('content', theme === 'dark' ? '#172331' : '#eef7ff');
+			})();
+		</script>
+	</head>
+	<body>
+		<a class="skip-link" href="#main-content">Skip to content</a>
+		<slot />
+	</body>
+</html>
