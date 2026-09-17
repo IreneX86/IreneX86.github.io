@@ -22,5 +22,6 @@ export const projects: Project[] = [
 		imageAlt: 'PokéGuess home screen with the Pokémon search field and empty guess history',
 		imageWidth: 2938,
 		imageHeight: 1662,
+		notesUrl: '/blog/building-pokeguess/',
 	},
 ];

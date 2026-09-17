@@ -1035,6 +1035,53 @@ main {
 	max-width: 100%;
 	height: auto;
 	margin: 2rem auto;
+	border: 2px solid var(--pixel-border-strong);
+	box-shadow: 4px 4px 0 var(--pixel-shadow);
+}
+
+.prose .article-actions {
+	display: flex;
+	margin: 2rem 0;
+	flex-wrap: wrap;
+	gap: var(--space-3);
+}
+
+.prose .article-action {
+	display: inline-flex;
+	min-height: 2.75rem;
+	padding: var(--space-2) var(--space-4);
+	align-items: center;
+	justify-content: center;
+	gap: 0.35em;
+	border: 2px solid var(--pixel-border-strong);
+	box-shadow: 3px 3px 0 var(--pixel-shadow);
+	font-family: var(--ui-font);
+	font-size: 0.72rem;
+	font-weight: 700;
+	letter-spacing: 0.025em;
+	line-height: 1.5;
+	text-decoration: none;
+}
+
+.prose .article-action-primary {
+	background: var(--pixel-pink-soft);
+	color: var(--pixel-pink-strong);
+}
+
+.prose .article-action-secondary {
+	background: var(--pixel-surface);
+	color: var(--text-secondary);
+}
+
+.prose .article-action:hover {
+	background: var(--pixel-blue-soft);
+	color: var(--pixel-blue-strong);
+	text-decoration: none;
+}
+
+.prose .article-action:active {
+	box-shadow: 1px 1px 0 var(--pixel-shadow);
+	transform: translate(2px, 2px);
 }
 
 .astro-code span {

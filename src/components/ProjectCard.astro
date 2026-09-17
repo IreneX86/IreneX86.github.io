@@ -26,6 +26,9 @@ const { project } = Astro.props;
 		</ul>
 		<div class="project-actions">
 			<a class="project-action project-action-primary" href={project.liveUrl}>Play Game</a>
+			{project.notesUrl && (
+				<a class="project-action project-action-secondary" href={project.notesUrl}>Dev Notes</a>
+			)}
 			<a class="project-action project-action-secondary" href={project.sourceUrl}>
 				Source <span aria-hidden="true">↗</span>
 			</a>
