@@ -8,6 +8,8 @@ export const zh: Record<string, string> = {
   'About Irene and this small place for notes, experiments, and technical writing.': '关于 Irene，以及这个记录笔记、实验与技术写作的小天地。',
   "Small things I've built, explored, or made for fun.": '一些我做过、探索过，或纯粹为了好玩而制作的小项目。',
   "Hi, I'm Irene.": '你好，我是 Irene。',
+  "Hello, I'm Irene.": '你好，我是 Irene。',
+  "I'm a game lover.": '我喜欢打游戏喵。',
   "I'm interested in software, artificial intelligence, and the things I discover while learning and building.": '我对软件、人工智能，以及在学习和实践中发现的新事物充满兴趣。',
   'This blog is a small place for notes, experiments, technical writing, and things I want to remember.': '这个博客是我的小天地，用来存放笔记、实验、技术文章，以及想记住的事情。',
   'Currently interested in': '目前感兴趣的方向', 'AI / Machine Learning': '人工智能 / 机器学习',
