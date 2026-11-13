@@ -5,7 +5,7 @@ export const SITE = {
 	url: 'https://irenex86.github.io',
 	github: 'https://github.com/IreneX86',
 	githubUsername: 'IreneX86',
-	blogDescription: 'Notes, experiments, and things worth remembering.',
+	blogDescription: 'Blog.',
 	aboutDescription: 'About Irene and this small place for notes, experiments, and technical writing.',
 } as const;
 

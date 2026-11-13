@@ -35,7 +35,7 @@ const postGroups = posts.reduce<Array<{ year: number; posts: BlogPost[] }>>((gro
 					<PixelCloud class="blog-cloud" size="sm" />
 				</div>
 				<h1><Localized text='Blog' /></h1>
-				<p><Localized text='Notes, experiments, and things worth remembering.' /></p>
+				<p><Localized text={SITE.blogDescription} /></p>
 			</header>
 
 			<div class="post-archive">

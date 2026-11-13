@@ -4,7 +4,7 @@ export const zh: Record<string, string> = {
   'Recent Writing': '最新文章', 'About this space': '关于这里', 'No posts yet': '暂无文章',
   'Into games. Building stuff out of boredom.': '游戏爱好者。记录我太闲了搞出的东西。',
   'A place for technical writing, project notes, things I am learning, and the occasional personal reflection.': '在这里分享技术文章、项目笔记、学习记录，以及偶尔的个人感想。',
-  'Notes, experiments, and things worth remembering.': '笔记、实验，以及值得记住的事。',
+  'Blog.': '博客。',
   'About Irene and this small place for notes, experiments, and technical writing.': '关于 Irene，以及这个记录笔记、实验与技术写作的小天地。',
   'Just for fun.': '纯粹为了好玩。',
   "Hi, I'm Irene.": '你好，我是 Irene。',
