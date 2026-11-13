@@ -40,13 +40,12 @@ const recentPosts = (await getPublishedPosts()).slice(0, 3);
 					<p class="empty-state"><Localized text='No posts yet' /></p>
 				)}
 			</section>
-
-			<section class="section about-preview" aria-labelledby="about-this-space-heading">
-				<h2 class="section-heading" id="about-this-space-heading"><Localized text='About this space' /></h2>
-				<p><Localized text='A place for technical writing, project notes, things I am learning, and the occasional personal reflection.' /></p>
-			</section>
 		</div>
 	</main>
 
 	<SiteFooter />
 </BaseLayout>
+
+<style>
+	.home { padding-bottom: clamp(3rem, 6vw, 5rem); }
+</style>
