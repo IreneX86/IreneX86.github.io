@@ -22,6 +22,8 @@ const greeting = "Meowster! Let's go game game meow!";
     height: 40px;
     background: url('/images/mascot/meowster.png') -5px -5px / 145px auto no-repeat;
     image-rendering: pixelated;
+    /* Exclude the adjacent speech-bubble tail from the source image's lower right. */
+    clip-path: polygon(0 0, 100% 0, 100% 70%, 90% 70%, 90% 85%, 80% 85%, 80% 100%, 0 100%);
   }
   .mascot-bubble {
     position: absolute;
