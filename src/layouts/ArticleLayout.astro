@@ -12,9 +12,10 @@ import PixelStar from '../components/sprites/PixelStar.astro';
 
 interface Props {
 	post: BlogPost;
+	hasChinese?: boolean;
 }
 
-const { post } = Astro.props;
+const { post, hasChinese = false } = Astro.props;
 const { title, description, publishedDate, updatedDate, tags, test } = post.data;
 const readingTime = estimateReadingTime(post.body);
 ---
@@ -48,8 +49,8 @@ const readingTime = estimateReadingTime(post.body);
 				)}
 			</header>
 
-			<p class="translation-notice" data-lang="zh" lang="zh-CN">本文正文暂为英文原文，中文译文尚未提供。</p>
-			<div class="prose" lang="en">
+			{!hasChinese && <p class="translation-notice" data-lang="zh" lang="zh-CN">本文正文暂为英文原文，中文译文尚未提供。</p>}
+			<div class="prose">
 				<slot />
 			</div>
 

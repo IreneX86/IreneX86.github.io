@@ -1,5 +1,6 @@
 ---
 import { render } from 'astro:content';
+import type { MarkdownInstance } from 'astro';
 import ArticleLayout from '../../layouts/ArticleLayout.astro';
 import { getPublishedPosts, type BlogPost } from '../../utils/posts';
 
@@ -18,8 +19,11 @@ interface Props {
 
 const { post } = Astro.props;
 const { Content } = await render(post);
+const translations = import.meta.glob<MarkdownInstance<Record<string, unknown>> | undefined>('../../translations/blog/*.md', { eager: true });
+const ChineseContent = translations[`../../translations/blog/${post.id}.md`]?.Content;
 ---
 
-<ArticleLayout post={post}>
-	<Content />
+<ArticleLayout post={post} hasChinese={Boolean(ChineseContent)}>
+	<div data-lang={ChineseContent ? 'en' : undefined} lang="en"><Content /></div>
+	{ChineseContent && <div data-lang="zh" lang="zh-CN"><ChineseContent /></div>}
 </ArticleLayout>
