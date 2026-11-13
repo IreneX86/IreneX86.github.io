@@ -1604,3 +1604,35 @@ main {
 		transition-timing-function: steps(2, end);
 	}
 }
+
+/* Both language copies are rendered; the saved preference is applied before paint. */
+html:not([lang='zh-CN']) [data-lang='zh'],
+html[lang='zh-CN'] [data-lang='en'] { display: none !important; }
+html[lang='zh-CN'] { --reading-font: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif; }
+html[lang='zh-CN'] .intro h1 { letter-spacing: -0.055em; }
+html[lang='zh-CN'] .page-header h1 { letter-spacing: 0; }
+.language-toggle {
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0 8px;
+  border: 1px solid var(--pixel-border-strong);
+  background: var(--pixel-surface);
+  color: var(--text-heading);
+  font-family: var(--ui-font);
+  font-size: 0.75rem;
+  cursor: pointer;
+}
+.language-toggle:hover { background: var(--pixel-blue-soft); }
+.translation-notice {
+  margin: 1.5rem 0 0;
+  padding: 0.75rem 1rem;
+  border-left: 3px solid var(--pixel-pink);
+  background: var(--pixel-surface);
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+@media (max-width: 43rem) {
+  .header-inner { grid-template-columns: 1fr auto auto; }
+  .language-toggle { grid-column: 2; grid-row: 1; }
+  .theme-toggle { grid-column: 3; }
+}

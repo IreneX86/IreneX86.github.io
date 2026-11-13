@@ -1,4 +1,5 @@
 ---
+import Localized from '../components/Localized.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import PixelCloud from '../components/sprites/PixelCloud.astro';
@@ -22,9 +23,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 				<PixelCloud class="not-found-cloud" size="sm" />
 			</div>
 			<p class="error-code">404</p>
-			<h1 id="not-found-heading">Page not found</h1>
-			<p class="not-found-copy">Looks like this page wandered off somewhere.</p>
-			<a class="back-home-link" href="/">← Back home</a>
+			<h1 id="not-found-heading"><Localized text='Page not found' /></h1>
+			<p class="not-found-copy"><Localized text='Looks like this page wandered off somewhere.' /></p>
+			<a class="back-home-link" href="/"><Localized text='← Back home' /></a>
 		</section>
 	</main>
 

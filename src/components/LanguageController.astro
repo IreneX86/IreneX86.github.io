@@ -1,0 +1,41 @@
+<script>
+  import { zh } from '../i18n/zh';
+  const toggle = document.querySelector<HTMLButtonElement>('[data-language-toggle]');
+  const originalTitle = document.title;
+  const attributes: { element: Element; name: string; english: string }[] = [];
+  for (const element of document.querySelectorAll('[aria-label], [alt], meta[name="description"], meta[property="og:description"], meta[name="twitter:description"]')) {
+    for (const name of ['aria-label', 'alt', 'content']) {
+      const english = element.getAttribute(name);
+      if (english && zh[english]) attributes.push({ element, name, english });
+    }
+  }
+  const dates = [...document.querySelectorAll<HTMLTimeElement>('time[datetime]')].map(element => ({ element, english: element.textContent }));
+  const applyLanguage = (language: 'en' | 'zh', persist = false) => {
+    const chinese = language === 'zh';
+    document.documentElement.lang = chinese ? 'zh-CN' : 'en';
+    if (toggle) {
+      toggle.textContent = chinese ? 'EN' : '中文';
+      toggle.lang = chinese ? 'en' : 'zh-CN';
+      toggle.setAttribute('aria-label', chinese ? 'Switch to English' : '切换到中文');
+    }
+    const title = originalTitle.split(' | ').map(part => chinese ? zh[part] ?? part : part).join(' | ');
+    document.title = title;
+    document.querySelectorAll('meta[property="og:title"], meta[name="twitter:title"]').forEach(meta => meta.setAttribute('content', title));
+    for (const { element, name, english } of attributes) element.setAttribute(name, chinese ? zh[english] : english);
+    for (const { element, english } of dates) {
+      const date = new Date(element.dateTime);
+      if (Number.isNaN(date.getTime())) continue;
+      element.textContent = chinese ? new Intl.DateTimeFormat('zh-CN', {
+        month: 'long', day: 'numeric', timeZone: 'UTC',
+        ...(element.classList.contains('post-date') ? {} : { year: 'numeric' as const }),
+      }).format(date) : english;
+    }
+    for (const element of document.querySelectorAll<HTMLElement>('[data-reading-minutes]')) {
+      element.textContent = chinese ? `阅读约 ${element.dataset.readingMinutes} 分钟` : `${element.dataset.readingMinutes} min read`;
+    }
+    if (persist) { try { localStorage.setItem('language', language); } catch {} }
+    document.dispatchEvent(new Event('languagechange'));
+  };
+  applyLanguage(document.documentElement.lang === 'zh-CN' ? 'zh' : 'en');
+  toggle?.addEventListener('click', () => applyLanguage(document.documentElement.lang === 'zh-CN' ? 'en' : 'zh', true));
+</script>

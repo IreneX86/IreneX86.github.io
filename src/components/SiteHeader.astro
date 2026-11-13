@@ -1,4 +1,5 @@
 ---
+import Localized from '../components/Localized.astro';
 import { SITE } from '../config';
 import MeowsterLogo from './MeowsterLogo.astro';
 
@@ -18,18 +19,19 @@ const isAbout = currentPath.startsWith('/about');
 
 		<div class="header-actions">
 			<nav class="site-nav" aria-label="Primary navigation">
-				<a href="/" aria-current={currentPath === '/' ? 'page' : undefined}>Home</a>
-				<a href="/blog/" aria-current={isBlog ? 'page' : undefined}>Blog</a>
-				<a href="/projects/" aria-current={isProjects ? 'page' : undefined}>Projects</a>
-				<a href="/about/" aria-current={isAbout ? 'page' : undefined}>About</a>
+				<a href="/" aria-current={currentPath === '/' ? 'page' : undefined}><Localized text='Home' /></a>
+				<a href="/blog/" aria-current={isBlog ? 'page' : undefined}><Localized text='Blog' /></a>
+				<a href="/projects/" aria-current={isProjects ? 'page' : undefined}><Localized text='Projects' /></a>
+				<a href="/about/" aria-current={isAbout ? 'page' : undefined}><Localized text='About' /></a>
 				<a class="external-link" href={SITE.github} rel="me">
 					GitHub <span aria-hidden="true">↗</span>
 				</a>
 			</nav>
 
+			<button class="language-toggle" type="button" data-language-toggle aria-label="切换到中文">中文</button>
 			<button class="theme-toggle" type="button" data-theme-toggle aria-label="Change color theme">
 				<span class="theme-icon" aria-hidden="true"></span>
-				<span class="sr-only" data-theme-value>Light theme</span>
+				<span class="sr-only" data-theme-value><Localized text='Light theme' /></span>
 			</button>
 		</div>
 	</div>
@@ -46,9 +48,11 @@ const isAbout = currentPath.startsWith('/about');
 		if (!themeToggle || !themeValue) return;
 
 		const nextTheme = theme === 'dark' ? 'light' : 'dark';
-		themeValue.textContent = `${theme === 'dark' ? 'Dark' : 'Light'} theme`;
-		themeToggle.setAttribute('aria-label', `Switch to ${nextTheme} theme`);
-		themeToggle.setAttribute('title', `Switch to ${nextTheme} theme`);
+		const chinese = document.documentElement.lang === 'zh-CN';
+		themeValue.textContent = chinese ? (theme === 'dark' ? '深色主题' : '浅色主题') : `${theme === 'dark' ? 'Dark' : 'Light'} theme`;
+		const label = chinese ? `切换到${nextTheme === 'dark' ? '深色' : '浅色'}主题` : `Switch to ${nextTheme} theme`;
+		themeToggle.setAttribute('aria-label', label);
+		themeToggle.setAttribute('title', label);
 	};
 
 	const applyTheme = (theme: 'light' | 'dark', persist = false) => {
@@ -67,6 +71,7 @@ const isAbout = currentPath.startsWith('/about');
 	};
 
 	updateControl(getTheme());
+	document.addEventListener('languagechange', () => updateControl(getTheme()));
 
 	themeToggle?.addEventListener('click', () => {
 		applyTheme(getTheme() === 'dark' ? 'light' : 'dark', true);

@@ -1,4 +1,5 @@
 ---
+import Localized from '../components/Localized.astro';
 import { SITE } from '../config';
 
 // Edit the greeting here; the text remains separate from the artwork.
@@ -9,7 +10,7 @@ const greeting = "Meowster! Let's go game game meow!";
   <a class="wordmark mascot-link" href="/" aria-label={`${SITE.title}, home`} aria-describedby="mascot-greeting">
     <span class="mascot-head" aria-hidden="true"></span>
   </a>
-  <div class="mascot-bubble" id="mascot-greeting" role="tooltip">{greeting}</div>
+  <div class="mascot-bubble" id="mascot-greeting" role="tooltip"><Localized text={greeting} /></div>
 </div>
 
 <style>

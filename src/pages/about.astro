@@ -1,4 +1,5 @@
 ---
+import Localized from '../components/Localized.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import PixelCloud from '../components/sprites/PixelCloud.astro';
@@ -28,32 +29,26 @@ const interests = [
 					<PixelStar class="about-star-secondary" size="xs" variant="diamond" />
 					<PixelCloud class="about-cloud" size="sm" />
 				</div>
-				<h1>About</h1>
+				<h1><Localized text='About' /></h1>
 			</header>
 
 			<div class="about-content">
 				<section class="about-intro" aria-label="Introduction">
-					<p class="about-lead">Hi, I'm Irene.</p>
-					<p>
-						I'm interested in software, artificial intelligence, and the things I discover while
-						learning and building.
-					</p>
-					<p>
-						This blog is a small place for notes, experiments, technical writing, and things I
-						want to remember.
-					</p>
+					<p class="about-lead"><Localized text="Hi, I'm Irene." /></p>
+					<p><Localized text="I'm interested in software, artificial intelligence, and the things I discover while learning and building." /></p>
+					<p><Localized text='This blog is a small place for notes, experiments, technical writing, and things I want to remember.' /></p>
 				</section>
 
 				<section class="about-section" aria-labelledby="interests-heading">
-					<h2 class="section-heading" id="interests-heading">Currently interested in</h2>
+					<h2 class="section-heading" id="interests-heading"><Localized text='Currently interested in' /></h2>
 					<ul class="interest-list">
-						{interests.map((interest) => <li>{interest}</li>)}
+						{interests.map((interest) => <li><Localized text={interest} /></li>)}
 					</ul>
 				</section>
 
 				<section class="about-section find-me" aria-labelledby="find-me-heading">
 					<PixelStar class="find-me-star" size="xs" variant="bright" />
-					<h2 class="section-heading" id="find-me-heading">Find me</h2>
+					<h2 class="section-heading" id="find-me-heading"><Localized text='Find me' /></h2>
 					<a class="about-github-link" href={SITE.github} rel="me">
 						GitHub <span aria-hidden="true">↗</span>
 					</a>

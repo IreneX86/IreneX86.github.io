@@ -1,4 +1,5 @@
 ---
+import Localized from '../../components/Localized.astro';
 import ProjectCard from '../../components/ProjectCard.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
@@ -14,8 +15,8 @@ const description = "Small things I've built, explored, or made for fun.";
 	<main id="main-content">
 		<div class="projects-shell">
 			<header class="page-header projects-header">
-				<h1>Projects</h1>
-				<p>{description}</p>
+				<h1><Localized text='Projects' /></h1>
+				<p><Localized text={description} /></p>
 			</header>
 
 			<div class="projects-list">

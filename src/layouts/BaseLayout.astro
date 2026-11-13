@@ -1,5 +1,7 @@
 ---
 import '../styles/global.css';
+import Localized from '../components/Localized.astro';
+import LanguageController from '../components/LanguageController.astro';
 import { absoluteUrl, SITE } from '../config';
 
 interface Props {
@@ -49,6 +51,9 @@ const sitemapUrl = absoluteUrl('/sitemap-index.xml');
 		<title>{title}</title>
 		<script is:inline>
 			(() => {
+				let language = 'en';
+				try { language = localStorage.getItem('language') === 'zh' ? 'zh' : 'en'; } catch {}
+				document.documentElement.lang = language === 'zh' ? 'zh-CN' : 'en';
 				let savedTheme;
 
 				try {
@@ -70,7 +75,8 @@ const sitemapUrl = absoluteUrl('/sitemap-index.xml');
 		</script>
 	</head>
 	<body>
-		<a class="skip-link" href="#main-content">Skip to content</a>
+		<a class="skip-link" href="#main-content"><Localized text="Skip to content" /></a>
 		<slot />
+		<LanguageController />
 	</body>
 </html>

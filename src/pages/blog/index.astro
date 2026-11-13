@@ -1,4 +1,5 @@
 ---
+import Localized from '../../components/Localized.astro';
 import PostRow from '../../components/PostRow.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
@@ -33,8 +34,8 @@ const postGroups = posts.reduce<Array<{ year: number; posts: BlogPost[] }>>((gro
 					<PixelStar class="blog-star" size="sm" variant="sparkle" />
 					<PixelCloud class="blog-cloud" size="sm" />
 				</div>
-				<h1>Blog</h1>
-				<p>Notes, experiments, and things worth remembering.</p>
+				<h1><Localized text='Blog' /></h1>
+				<p><Localized text='Notes, experiments, and things worth remembering.' /></p>
 			</header>
 
 			<div class="post-archive">
@@ -48,7 +49,7 @@ const postGroups = posts.reduce<Array<{ year: number; posts: BlogPost[] }>>((gro
 						</section>
 					))
 				) : (
-					<p class="empty-state">No posts yet</p>
+					<p class="empty-state"><Localized text='No posts yet' /></p>
 				)}
 			</div>
 		</div>

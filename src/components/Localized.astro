@@ -1,0 +1,7 @@
+---
+import { zh } from '../i18n/zh';
+interface Props { text: string; }
+const { text } = Astro.props;
+const translated = zh[text.replace(/\s+/g, ' ').trim()];
+---
+{translated ? <><span data-lang="en" lang="en">{text}</span><span data-lang="zh" lang="zh-CN">{translated}</span></> : text}

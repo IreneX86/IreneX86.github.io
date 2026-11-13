@@ -1,4 +1,5 @@
 ---
+import Localized from '../components/Localized.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import {
@@ -28,27 +29,27 @@ const readingTime = estimateReadingTime(post.body);
 				<div class="article-status">
 					<time datetime={publishedDate.toISOString()}>{formatLongDate(publishedDate)}</time>
 					<span aria-hidden="true">·</span>
-					<span>{readingTime} min read</span>
-					{test && <span class="test-label">Test</span>}
+					<span data-reading-minutes={readingTime}>{readingTime} min read</span>
+					{test && <span class="test-label"><Localized text='Test' /></span>}
 				</div>
 
-				<h1>{title}</h1>
-				<p class="article-description">{description}</p>
+				<h1><Localized text={title} /></h1>
+				<p class="article-description"><Localized text={description} /></p>
 
 				{tags.length > 0 && (
-					<ul class="tag-list" aria-label="Tags">
-						{tags.map((tag) => <li>{tag}</li>)}
+			<ul class="tag-list" aria-label="Tags">
+						{tags.map((tag) => <li><Localized text={tag} /></li>)}
 					</ul>
 				)}
 
 				{updatedDate && (
-					<p class="updated-date">
-						Updated <time datetime={updatedDate.toISOString()}>{formatLongDate(updatedDate)}</time>
+					<p class="updated-date"><Localized text='Updated' /><time datetime={updatedDate.toISOString()}>{formatLongDate(updatedDate)}</time>
 					</p>
 				)}
 			</header>
 
-			<div class="prose">
+			<p class="translation-notice" data-lang="zh" lang="zh-CN">本文正文暂为英文原文，中文译文尚未提供。</p>
+			<div class="prose" lang="en">
 				<slot />
 			</div>
 
@@ -56,7 +57,7 @@ const readingTime = estimateReadingTime(post.body);
 				<div class="article-end-marker" aria-hidden="true">
 					<PixelStar size="xs" variant="diamond" />
 				</div>
-				<a href="/blog/">← Back to Blog</a>
+				<a href="/blog/"><Localized text='← Back to Blog' /></a>
 			</footer>
 		</article>
 	</main>
