@@ -1,7 +1,7 @@
 export const SITE = {
 	title: 'Irene X',
 	author: 'Irene X',
-	description: "Notes on software, AI, and things I'm learning.",
+	description: 'Into games. Building stuff out of boredom.',
 	url: 'https://irenex86.github.io',
 	github: 'https://github.com/IreneX86',
 	githubUsername: 'IreneX86',

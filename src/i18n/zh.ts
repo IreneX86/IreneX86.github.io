@@ -2,7 +2,7 @@
 export const zh: Record<string, string> = {
   'Home': '首页', 'Blog': '博客', 'Projects': '项目', 'About': '关于',
   'Recent Writing': '最新文章', 'About this space': '关于这里', 'No posts yet': '暂无文章',
-  "Notes on software, AI, and things I'm learning.": '记录软件、人工智能，以及我正在学习的事物。',
+  'Into games. Building stuff out of boredom.': '游戏爱好者。记录我太闲了搞出的东西。',
   'A place for technical writing, project notes, things I am learning, and the occasional personal reflection.': '在这里分享技术文章、项目笔记、学习记录，以及偶尔的个人感想。',
   'Notes, experiments, and things worth remembering.': '笔记、实验，以及值得记住的事。',
   'About Irene and this small place for notes, experiments, and technical writing.': '关于 Irene，以及这个记录笔记、实验与技术写作的小天地。',
