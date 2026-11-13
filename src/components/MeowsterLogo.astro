@@ -1,0 +1,86 @@
+---
+import { SITE } from '../config';
+
+// Edit the greeting here; the text remains separate from the artwork.
+const greeting = "Meowster! Let's go game game meow!";
+---
+
+<div class="mascot" data-mascot>
+  <a class="wordmark mascot-link" href="/" aria-label={`${SITE.title}, home`} aria-describedby="mascot-greeting">
+    <span class="mascot-head" aria-hidden="true"></span>
+  </a>
+  <div class="mascot-bubble" id="mascot-greeting" role="tooltip">{greeting}</div>
+</div>
+
+<style>
+  .mascot { position: relative; z-index: 20; justify-self: start; }
+  .mascot-link { width: 44px; height: 44px; }
+  /* Display only the approved head from the original artwork, without resampling it. */
+  .mascot-head {
+    display: block;
+    width: 40px;
+    height: 40px;
+    background: url('/images/mascot/meowster.png') -5px -5px / 145px auto no-repeat;
+    image-rendering: pixelated;
+  }
+  .mascot-bubble {
+    position: absolute;
+    top: calc(100% + 16px);
+    left: 0;
+    width: 216px;
+    max-width: calc(100vw - 3rem);
+    padding: 12px 14px;
+    border: 3px solid #7770b1;
+    background: #f9fcff;
+    box-shadow: 3px 3px 0 #b6a2e0;
+    color: #252344;
+    font: 600 13px/1.5 var(--ui-font);
+    visibility: hidden;
+    opacity: 0;
+  }
+  .mascot-bubble::before {
+    content: '';
+    position: absolute;
+    top: -11px;
+    left: 13px;
+    width: 14px;
+    height: 14px;
+    border-top: 3px solid #7770b1;
+    border-left: 3px solid #7770b1;
+    background: #f9fcff;
+    transform: rotate(45deg);
+  }
+  /* Bridge the gap so the tooltip can also be hovered without disappearing. */
+  .mascot::after { content: ''; position: absolute; top: 100%; left: 0; width: 100%; height: 18px; }
+  .mascot:not([data-dismissed]):hover .mascot-bubble,
+  .mascot:not([data-dismissed]):focus-within .mascot-bubble,
+  .mascot[data-open] .mascot-bubble { visibility: visible; opacity: 1; }
+</style>
+
+<script>
+  const mascot = document.querySelector<HTMLElement>('[data-mascot]');
+  const link = mascot?.querySelector<HTMLAnchorElement>('a');
+  if (mascot && link) {
+    // On touch screens the first tap reveals the greeting; a second tap follows Home.
+    link.addEventListener('click', (event) => {
+      if (window.matchMedia('(hover: none)').matches && !mascot.hasAttribute('data-open')) {
+        event.preventDefault();
+        mascot.removeAttribute('data-dismissed');
+        mascot.setAttribute('data-open', '');
+      }
+    });
+    const dismiss = () => {
+      mascot.removeAttribute('data-open');
+      mascot.setAttribute('data-dismissed', '');
+    };
+    document.addEventListener('keydown', (event) => { if (event.key === 'Escape') dismiss(); });
+    document.addEventListener('pointerdown', (event) => {
+      if (event.target instanceof Node && !mascot.contains(event.target)) dismiss();
+    });
+    mascot.addEventListener('pointerenter', () => mascot.removeAttribute('data-dismissed'));
+    link.addEventListener('focus', () => mascot.removeAttribute('data-dismissed'));
+    mascot.addEventListener('pointerleave', () => {
+      if (!mascot.hasAttribute('data-open')) mascot.removeAttribute('data-dismissed');
+    });
+  }
+</script>
