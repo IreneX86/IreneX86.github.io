@@ -8,10 +8,10 @@ import { SITE } from '../config';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const interests = [
-	'AI / Machine Learning',
-	'Software',
-	'Computer Systems',
-	"Things I'm learning",
+	'Nintendo',
+	'Steam',
+	'Mobile Games',
+	'AI & Other Random Stuff',
 ];
 ---
 
@@ -35,7 +35,7 @@ const interests = [
 
 			<div class="about-content">
 				<section class="about-section" aria-labelledby="interests-heading">
-					<h2 class="section-heading" id="interests-heading"><Localized text='Currently interested in' /></h2>
+					<h2 class="section-heading" id="interests-heading"><Localized text='Interests' /></h2>
 					<ul class="interest-list">
 						{interests.map((interest) => <li><Localized text={interest} /></li>)}
 					</ul>

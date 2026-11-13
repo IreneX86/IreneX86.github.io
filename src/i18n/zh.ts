@@ -13,6 +13,8 @@ export const zh: Record<string, string> = {
   "I'm interested in software, artificial intelligence, and the things I discover while learning and building.": '我对软件、人工智能，以及在学习和实践中发现的新事物充满兴趣。',
   'This blog is a small place for notes, experiments, technical writing, and things I want to remember.': '这个博客是我的小天地，用来存放笔记、实验、技术文章，以及想记住的事情。',
   'Currently interested in': '目前感兴趣的方向', 'AI / Machine Learning': '人工智能 / 机器学习',
+  'Interests': '爱好', 'Nintendo': '任天堂', 'Mobile Games': '手游',
+  'AI & Other Random Stuff': 'AI和其他乱七八糟的东西',
   'Software': '软件', 'Computer Systems': '计算机系统', "Things I'm learning": '正在学习的事物', 'Find me': '找到我',
   'A multilingual Pokémon guessing game with clues in English, 简体中文, and 日本語.': '一款宝可梦猜谜游戏，支持英语、简体中文和日语提示。',
   'Play Game': '开始游戏', 'Dev Notes': '开发笔记', 'Source': '源代码',
